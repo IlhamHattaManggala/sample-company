@@ -146,7 +146,42 @@ All content can be customized by editing:
 - Translations in `app/utils/i18n.ts`
 - Images (currently using Unsplash placeholders)
 
-## 🐳 Docker Deployment
+## 🚀 Deployment
+
+### Netlify Deployment (Recommended)
+
+This project is configured for easy deployment to Netlify.
+
+#### Quick Deploy
+
+1. **Push to GitHub** and connect your repository to Netlify
+2. Netlify will auto-detect settings from `netlify.toml`
+3. Build settings (auto-configured):
+   - Build command: `npm run build`
+   - Publish directory: `build/client`
+   - Node version: `18`
+
+#### Manual Deploy via CLI
+
+```bash
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Login
+netlify login
+
+# Deploy
+netlify deploy --prod
+```
+
+#### Configuration Files
+
+- `netlify.toml` - Netlify configuration with build settings, redirects, and headers
+- `netlify/functions/server.ts` - Serverless function for SSR support
+
+For detailed deployment instructions, see [.netlify/README.md](.netlify/README.md)
+
+### Docker Deployment
 
 To build and run using Docker:
 
@@ -165,7 +200,6 @@ The containerized application can be deployed to any platform that supports Dock
 - Fly.io
 - Railway
 - Vercel
-- Netlify
 
 ## 📝 Notes
 
