@@ -109,7 +109,8 @@ sample-company-profile/
 │   │   └── i18n.ts          # Internationalization translations
 │   └── root.tsx             # Root layout
 ├── public/                  # Static assets
-│   └── favicon.svg          # Favicon
+│   ├── favicon.svg          # Favicon
+│   └── _redirects           # Netlify redirects for SPA routing
 └── package.json
 ```
 
@@ -150,16 +151,21 @@ All content can be customized by editing:
 
 ### Netlify Deployment (Recommended)
 
-This project is configured for easy deployment to Netlify.
+This project is configured for easy deployment to Netlify with proper routing support.
 
 #### Quick Deploy
 
 1. **Push to GitHub** and connect your repository to Netlify
-2. Netlify will auto-detect settings from `netlify.toml`
-3. Build settings (auto-configured):
+2. Configure build settings:
    - Build command: `npm run build`
    - Publish directory: `build/client`
-   - Node version: `18`
+   - Node version: `18` or higher
+
+3. **Routing Configuration**: The project includes a `public/_redirects` file that handles client-side routing:
+   ```
+   /* /index.html 200
+   ```
+   This ensures all routes are properly handled by React Router.
 
 #### Manual Deploy via CLI
 
@@ -174,14 +180,13 @@ netlify login
 netlify deploy --prod
 ```
 
-#### Configuration Files
+#### Important Notes for Netlify
 
-- `netlify.toml` - Netlify configuration with build settings, redirects, and headers
-- `netlify/functions/server.ts` - Serverless function for SSR support
+- The `public/_redirects` file is automatically included in the build
+- This file ensures all routes redirect to `index.html` for proper SPA routing
+- No additional configuration needed - just build and deploy!
 
-For detailed deployment instructions, see [.netlify/README.md](.netlify/README.md)
-
-### Docker Deployment
+### 🐳 Docker Deployment
 
 To build and run using Docker:
 
@@ -200,6 +205,7 @@ The containerized application can be deployed to any platform that supports Dock
 - Fly.io
 - Railway
 - Vercel
+- Netlify
 
 ## 📝 Notes
 
